@@ -28,6 +28,12 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'turbolinks'
 
+group :test do
+  gem 'webrat'
+  gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
