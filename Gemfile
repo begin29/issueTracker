@@ -29,7 +29,6 @@ gem 'twitter-bootstrap-rails'
 gem 'turbolinks'
 
 group :test do
-  gem 'webrat'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
 end
