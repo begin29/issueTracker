@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home:
+    titles:
+      welcome_message: 'Welcome to Issue Tracking system'
+    buttons:
+      create_request: 'Create Ticket Request'
