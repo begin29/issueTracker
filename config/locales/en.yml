@@ -22,6 +22,9 @@
 en:
   home:
     titles:
-      welcome_message: 'Welcome to Issue Tracking system'
+      welcome_message: 'Welcome to issue tracking system!'
     buttons:
       create_request: 'Create Ticket Request'
+  ticket:
+    titles:
+      new_message: 'New Ticket'
