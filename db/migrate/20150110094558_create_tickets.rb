@@ -3,8 +3,9 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.text :description
       t.string :status
-      t.integer :owner
-      t.integer :stuff
+      t.integer :customer_id
+      t.integer :stuff_id
+      t.string :subject
 
       t.timestamps null: false
     end

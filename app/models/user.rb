@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tickets
+
+  private
+    def password_required?
+      user_type == 'customer' ? false : !persisted? || !password.nil? || !password_confirmation.nil?
+    end
 end

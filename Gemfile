@@ -13,9 +13,6 @@ gem "haml-rails"
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'devise'
-
-gem 'pry-rails'
-gem 'better_errors'
 gem 'thin'
 gem 'cancancan'
 
@@ -28,6 +25,13 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'turbolinks'
 gem 'will_paginate'
+gem 'friendly_id', '>= 5.0'
+
+group :development do
+  gem "binding_of_caller"
+  gem 'pry-rails'
+  gem 'better_errors'
+end
 
 group :test do
   gem 'database_cleaner'

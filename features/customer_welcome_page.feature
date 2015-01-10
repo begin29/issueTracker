@@ -4,16 +4,18 @@ Feature: Customer welcome page
 
   Scenario: View welcome page
     Given I am viewing "welcome page"
-    Then I should see "Welcome to issue tracking system"
+    Then I should be on the page with the "title" message "Welcome to issue tracking system!"
     And I should see a button with a value of "Create Ticket Request"
 
   Scenario: Create ticket request
     Given I am viewing "welcome page"
-    When I press "Create Ticket Request"
-    Then I should see "New Ticket"
+    When I click "Create Ticket Request"
+    Then I should be on the page with the "title" message "New Ticket"
     And I fill in "email" with "test@email.com"
-    And I fill in "title" with "test subject"
-    And I fill in "description" with "test description"
+    And I fill in "first name" with "Petro"
+    And I fill in "last name" with "Ivanenko"
+    And I fill in "subject" with "Test subject"
+    And I fill in "description" with "Some long description"
     And I press "Create"
-    Then I should see "New request was created."
-    And customer should receive an email with ticket link
+    Then I should be on the page with the "alert success" message "New ticket request was created."
+    And customer with email "test_email@email.com" should receive message with subject "request ticket" and ticket link with format "/[A-Z]{3}\-[\d,3]{3}\-[A-Z,3]{3}\-[\d,3]{3}\-[A-Z,3]{3}/"

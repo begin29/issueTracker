@@ -11,18 +11,26 @@ When(/^I follow "(.*?)"$/) do |page|
 end
 
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  e = find("input[id$='#{arg1.downcase.gsub(' ', '_')}']")
+  e.set arg2
 end
 
-When(/^I press "(.*?)"$/) do |link|
+When(/^I press "(.*?)"$/) do |button|
+  click_button button
+end
+
+When(/^I click "(.*?)"$/) do |link|
   click_link link
 end
 
-Then(/^I should see "(.*?)"$/) do |arg1|
-  # TODO: this doesn`t work
-  page.has_content?(arg1)
+Then(/^I should be on the page with the "(.*?)" message "(.*?)"$/) do |class_arg, text|
+  page.should have_css(".#{class_arg.downcase.gsub(' ', '-')}", text: text)
 end
 
-Then(/^customer should receive an email with ticket link$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^customer with email "(.*?)" should receive message with subject "(.*?)" and ticket link with format "(.*?)"$/) do |email, subject, expression|
+  @email = ActionMailer::Base.deliveries.first
+  @email.from.should == "test_sender@example.com"
+  @email.to.should == email
+  @email.subject.should include(subject)
+  @email.body.match(expression).should_not be_blank
 end

@@ -1,10 +1,21 @@
 %h1.title
   = t('ticket.titles.new_message')
-.border-form-div
-  = form_for @ticket do |f|
-    = f.fields_for :customer do |c|
-      = c.text_field :first_name, autofocus: true, placeholder: 'First Name'
-      = c.text_field :last_name, placeholder: 'Last Name'
-      = c.text_field :email, placeholder: 'Email'
-    = f.text_field :description, placeholder: 'Ticket Description'
-    = f.button "Create", id: "create"
+#page-body
+  -if @ticket.errors.any?
+    %div#error_explanation
+      %h2
+        =pluralize(@ticket.errors.count, "error")+' '
+        prohibited this link from being saved:
+      %ul
+      -@ticket.errors.full_messages.each do |msg|
+        %li
+          =msg
+  .border-form-div
+    = form_for @ticket do |f|
+      = f.fields_for :customer, @customer do |c|
+        = c.text_field :first_name, autofocus: true, placeholder: 'First Name'
+        = c.text_field :last_name, placeholder: 'Last Name'
+        = c.text_field :email, placeholder: 'Email'
+      = f.text_field :subject, placeholder: 'Ticket Subject'
+      = f.text_field :description, placeholder: 'Ticket Description'
+      = f.button "Create", id: "create"
