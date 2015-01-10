@@ -18,4 +18,4 @@ Feature: Customer welcome page
     And I fill in "description" with "Some long description"
     And I press "Create"
     Then I should be on the page with the "alert success" message "New ticket request was created."
-    And customer with email "test_email@email.com" should receive message with subject "request ticket" and ticket link with format "/[A-Z]{3}\-[\d,3]{3}\-[A-Z,3]{3}\-[\d,3]{3}\-[A-Z,3]{3}/"
+    And customer with email "test@email.com" should receive message with subject 'Your request on site "http://myawesomesite.com" was created!' and ticket link with format "[a-z]{3}-[\d]{3}-[a-z]{3}-[\d]{3}-[a-z]{3}"

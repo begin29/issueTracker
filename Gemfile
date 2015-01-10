@@ -26,10 +26,10 @@ gem 'twitter-bootstrap-rails'
 gem 'turbolinks'
 gem 'will_paginate'
 gem 'friendly_id', '>= 5.0'
+gem 'pry-rails'
 
 group :development do
   gem "binding_of_caller"
-  gem 'pry-rails'
   gem 'better_errors'
 end
 

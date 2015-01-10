@@ -1,6 +1,7 @@
 class Ticket < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :generate_slug, use: :slugged
+  # TODO: Ticket.find('slug') doesn`t work.
+  friendly_id :generate_slug, use: [:slugged, :finders]
 
   belongs_to :customer, -> { where user_type: 'customer' }, class_name: 'User'
   belongs_to :stuff, -> { where user_type: 'stuff' }, class_name: 'User'
@@ -9,7 +10,7 @@ class Ticket < ActiveRecord::Base
 
   def generate_slug
     digits = [*('1'..'9')]
-    letters = [*('A'..'Z')]
+    letters = [*('a'..'z')]
     "#{letters.sample_three}-#{ digits.sample_three}-#{letters.sample_three}-#{ digits.sample_three}-#{letters.sample_three}"
   end
 end

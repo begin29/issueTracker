@@ -12,7 +12,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new ticket_params
     if @ticket.save
-      MessageNotifier.delay.notification()
+      UserMailer.request_email(@ticket.customer, @ticket).deliver_now
       redirect_to root_path, flash: { notice: "New ticket request was created." }
     else
       render :new
