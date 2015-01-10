@@ -27,10 +27,13 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'turbolinks'
+gem 'will_paginate'
 
 group :test do
   gem 'database_cleaner'
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
+  gem "rspec"
+  gem "rspec-rails"
 end
 
 # To use ActiveModel has_secure_password
