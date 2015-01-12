@@ -6,6 +6,8 @@ def path_to(page_name)
     tickets_path
   when /new ticket/
     new_ticket_path
+  when /show ticket (.+)/
+    ticket_path($1)
   # Add more page name => path mappings here
   else
     raise "Can't find mapping from \"#{page_name}\" to a path."

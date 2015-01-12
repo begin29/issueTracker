@@ -1,5 +1,5 @@
-Given(/^I am viewing "(.*?)"$/) do |arg1|
-  visit path_to arg1
+Given(/^I am viewing "(.*?)"$/) do |page|
+  visit path_to page
 end
 
 Then(/^I should see a button with a value of "(.*?)"$/) do |arg1|
@@ -10,9 +10,9 @@ When(/^I follow "(.*?)"$/) do |page|
   visit path_to page
 end
 
-When(/^I fill in "(.*?)" with "(.*?)"$/) do |arg1, arg2|
-  e = find("input[id$='#{arg1.downcase.gsub(' ', '_')}']")
-  e.set arg2
+When(/^I fill in "(.*?)" named "(.*?)" with "(.*?)"$/) do |arg1, arg2, arg3|
+  e = find("#{arg1}[id$='#{arg2.downcase.gsub(' ', '_')}']")
+  e.set arg3
 end
 
 When(/^I press "(.*?)"$/) do |button|
@@ -34,3 +34,17 @@ Then(/^customer with email "(.*?)" should receive message with subject 'Your req
   @email.subject.should include(subject)
   @email.body.match(expression).should_not be_blank
 end
+
+Given(/^exist customer "(.*?)" with requested email$/) do |email|
+  @user = FactoryGirl.create(:user, email: email)
+  @ticket = FactoryGirl.create(:ticket, customer_id: @user.id)
+  UserMailer.request_email(@user.id, @ticket.id).deliver_now
+end
+
+Given(/^I follow to ticket show page by link with format "(.*?)" from email$/) do |expression|
+  @email = ActionMailer::Base.deliveries.first
+  res = Regexp.new(expression).match(@email.body.raw_source)
+  @ticket = Ticket.friendly.find(res[0])
+  visit path_to "show ticket #{@ticket.slug}"
+end
+
