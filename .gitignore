@@ -15,3 +15,17 @@
 /log/*
 !/log/.keep
 /tmp
+
+/solr/*
+*.sql
+*.todo
+*.sh
+*.rbc
+*.sassc
+.sass-cache
+/vendor/bundle
+/coverage/
+/spec/tmp/*
+**.orig
+*.xml
+*.*~
