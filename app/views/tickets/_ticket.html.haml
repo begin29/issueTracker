@@ -1,0 +1,16 @@
+%tr
+  - if can? :update, ticket
+    %td=link_to ticket.slug, ticket_path(ticket)
+  - else
+    %td=ticket.slug
+  %td= ticket.subject
+  %td= ticket.description
+  %td= ticket.customer.try(:full_name)
+  %td= ticket.stuff.try(:full_name)
+  %td
+    - if can? :opened, ticket
+      = link_to "Open", update_status_ticket_path(id: ticket.slug, state: 'open'), method: 'put', class: 'btn btn-success'
+    - if can? :on_holded, ticket
+      = link_to "Take Ownership", take_ownership_ticket_path(ticket), method: 'put', class: 'btn btn-warning'
+    - if can? :closed, ticket
+      = link_to "Close", update_status_ticket_path(id: ticket.slug, state: 'close'), method: 'put', class: "btn btn-danger"

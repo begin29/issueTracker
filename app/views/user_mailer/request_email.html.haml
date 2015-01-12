@@ -2,4 +2,4 @@ Hello "#{@user.email}"
 
 Your ticket request was created!
 
-Your ticket url is "#{@ticket.slug}"
+Your ticket url is "#{link_to @ticket.slug, ticket_url(@ticket.slug) }"

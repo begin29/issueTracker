@@ -1,0 +1,10 @@
+%ul.nav.nav-tabs
+  %li{role: "presentation", class: "#{check_if_active('index')}"}
+    = link_to "Open Tickets", tickets_path
+  %li{role: "presentation", class: "#{check_if_active('on_holded')}"}
+    = link_to "On Hold Tickets", on_holded_tickets_path
+  %li{role: "presentation", class: "#{check_if_active('waiting_for_responsed')}"}
+    = link_to "Waiting For Response", waiting_for_responsed_tickets_path
+  %li{role: "presentation", class: "#{check_if_active('closed')}"}
+    = link_to "Closed Tickets", closed_tickets_path
+= render 'tickets'

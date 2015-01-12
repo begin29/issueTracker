@@ -7,6 +7,6 @@
     = f.email_field :email, :placeholder => 'Email address'
     = f.password_field :password, :placeholder => 'Password'
     = f.password_field :password_confirmation, :placeholder => 'Password confirmation'
-    = f.hidden_field :type, value: 'stuff'
-    = f.submit "Sign up",:class=>'btn btn-primary'
+    = f.hidden_field :user_type, value: 'stuff'
+    = f.submit "Sign up", class: 'btn btn-primary'
   = render "devise/shared/links"

@@ -1,0 +1,15 @@
+#page-body
+  %div.elements
+    %table.table.margin-bottom-40
+      %thead
+        %tr
+          %th Name
+          %th Subject
+          %th Description
+          %th Customer
+          %th Owner
+          %th Actions
+      %tbody
+        = render @tickets
+    .paginate
+      = will_paginate @tickets

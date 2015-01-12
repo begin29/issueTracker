@@ -28,3 +28,7 @@ en:
   ticket:
     titles:
       new_message: 'New Ticket'
+      show_ticket: 'Show Ticket'
+      tickets: 'Tickets'
+    errors:
+      cant_update_status: 'Status wasn`t updated'
