@@ -158,9 +158,6 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.5.0)
-    paper_trail (3.0.6)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
     pg (0.18.1)
     pr_geohash (1.0.0)
     progress_bar (1.0.0)
@@ -302,7 +299,6 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   mailcatcher
-  paper_trail
   pg
   progress_bar
   pry-rails
