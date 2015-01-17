@@ -8,21 +8,6 @@
         %span.icon-bar
       %a.navbar-brand{:href => root_path} Home
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        - if can? :create_request, Ticket
-          %li.active
-            = link_to t('home.buttons.create_request'), new_ticket_path
-      - if can? :search, Ticket
-        %form.navbar-form.navbar-left{method: 'get', action: "#{request.path}", class: 'search-form form-horizontal', role: "search"}
-          .form-group
-            = text_field_tag :query, params[:query], placeholder: "Search", class: 'form-control'
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          - if user_signed_in?
-            %li
-              Signed in as #{current_user.email}.
-              =link_to "Sign out", destroy_user_session_path, :method => :delete
-          - else
-            %li
-              = link_to('Sign up', new_user_registration_path)
-              = link_to("Sign in", new_user_session_path)
+      %form.navbar-form.navbar-left{method: 'get', action: "#{request.path}", class: 'search-form form-horizontal', role: "search"}
+        .form-group
+          = text_field_tag :query, params[:query], placeholder: "Search", class: 'form-control'

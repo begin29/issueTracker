@@ -14,16 +14,16 @@ class User < ActiveRecord::Base
     text :email, :first_name, :last_name
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
+  def self.new_guest
+    new { |u| u.guest = true }
   end
 
-  def stuff_type?
-    user_type == 'stuff'
+  def full_name
+    self.guest? ? "Guest" : "#{first_name} #{last_name}"
   end
 
   private
     def password_required?
-      user_type == 'customer' ? false : !persisted? || !password.nil? || !password_confirmation.nil?
+      !self.guest?
     end
 end
