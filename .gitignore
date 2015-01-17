@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 
-/solr/*
+solr/*
 *.sql
 *.todo
 *.sh
