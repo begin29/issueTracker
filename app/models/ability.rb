@@ -4,7 +4,7 @@ class Ability
   def initialize(user, params = {})
     # Define abilities for the passed in user here. For example:
     #
-    user ||= User.new
+    # user ||= User.new
 
     can :manage, :all if user.try(:stuff_type?)
 
@@ -12,7 +12,7 @@ class Ability
 
     cannot :search, Ticket
 
-    if user.try(:stuff_type?)
+    if user
       cannot [:create_request, :create], Ticket
 
       cannot [:update, :show], Ticket
