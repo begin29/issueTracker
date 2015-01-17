@@ -1,20 +1,17 @@
 class TicketsController < ApplicationController
   authorize_resource
   before_filter :load_ticket, only: [:update, :show, :update_status, :take_ownership]
-  before_filter :update_version_creator, only: :update
-  before_filter :load_user, only: :create
   before_filter :load_tickets, only: [:waiting_for_responsed, :closed, :on_holded, :index]
 
   def new
     @ticket = Ticket.new
-    @customer = @ticket.build_customer
+    @ticket.build_customer
   end
 
   def index; end
 
   def create
     @ticket = Ticket.new ticket_params
-    @ticket.customer_id = @exist_user.id if @exist_user && !@exist_user.stuff_type?
     if @ticket.save
       UserMailer.request_email(@ticket.customer_id, @ticket.id).deliver_now
       redirect_to root_path, flash: { notice: "New ticket request was created." }
@@ -32,7 +29,9 @@ class TicketsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comments = @ticket.comments
+  end
 
   def on_holded; end
 
@@ -75,11 +74,7 @@ class TicketsController < ApplicationController
       @ticket = Ticket.friendly.find(params[:id])
     end
 
-    def update_version_creator
-      PaperTrail.whodunnit = current_user ? current_user.id : User.find(@ticket.customer.id) rescue nil
-    end
-
     def ticket_params
-      params.require(:ticket).permit(:stuff_id, :subject, :description, customer_attributes: [:first_name, :last_name, :email])
+      params.require(:ticket).permit(:stuff_id, :subject, :description, customer_attributes: [:first_name, :last_name, :email], comments_attributes: [:message])
     end
 end

@@ -20,15 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  home:
-    titles:
-      welcome_message: 'Welcome to issue tracking system!'
-    buttons:
-      create_request: 'Create Ticket Request'
-  ticket:
-    titles:
-      new_message: 'New Ticket'
-      show_ticket: 'Show Ticket'
-      tickets: 'Tickets'
-    errors:
-      cant_update_status: 'Status wasn`t updated'
+  pages:
+    home:
+      titles:
+        welcome_message: "Welcome, %{user_name}!"
+        site_name: 'IssueTrackingSystem'
+      buttons:
+        create_request: 'Create Ticket Request'
+        go_to_tickets: 'Go to ticket page'
+    ticket:
+      new:
+        new_ticket: 'New Ticket'
+      show:
+        update: 'Update'
+        show_ticket: 'Ticket'
+      update:
+        errors:
+          cant_update_status: 'Status wasn`t updated'

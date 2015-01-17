@@ -4,30 +4,18 @@
   .row
     .col-md-4
     .col-md-4
-      - ticket_versions = @ticket.versions.to_a
-      - first_ticket_version = get_first_ticket_version(ticket_versions)
-      %div.ticket_general_section
-        - if first_ticket_version
-          = first_ticket_version.subject
-          %br
-          = first_ticket_version.description
-      %div.ticket_history_section
+      = @ticket.description
+      %div.ticket_comments_section
         %table.table
           %tbody
-            - ticket_versions.each do |ver|
+            - @ticket.comments.each do |comment|
               %tr
-                - user = get_version_user(ver)
-                %td= "User #{user} was updated ticket at #{ver.created_at}"
-                - unless ver.changeset.blank?
-                  - ver.changeset.each do |k, v|
-                    - case k
-                    - when 'stuff_id'
-                      %td= "User #{get_stuff_name(v.last)} assigned to ticket"
-                    - else
-                      %td= "#{k.humanize} changed to '#{v.last}'"
+                %td
       %div.ticket_update_section
         - if can? :update, @ticket
           = form_for @ticket do |f|
-            = f.text_area :description, value: '', class: 'form-control margin-bottom-10', rows: '3'
-            = f.submit "Update", class: 'btn'
+            = f.fields_for :comments, Comment.new do |c|
+              = c.label :message
+              = c.text_area :message, class: 'form-control margin-bottom-10', rows: '3'
+            = f.submit t("Update"), class: 'btn'
     .col-md-4

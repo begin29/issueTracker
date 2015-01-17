@@ -1,6 +1,6 @@
 %h1.title
-  = t('ticket.titles.new_message')
--if @ticket.errors.any?
+  = t('pages.ticket.new_ticket')
+- if @ticket.errors.any?
   %div#error_explanation
     %h2
       =pluralize(@ticket.errors.count, "error")+' '
@@ -11,7 +11,7 @@
         =msg
 .border-form-div
   = form_for @ticket do |f|
-    = f.fields_for :customer, @customer do |c|
+    = f.fields_for :customer do |c|
       = c.text_field :first_name, autofocus: true, placeholder: 'First Name'
       = c.text_field :last_name, placeholder: 'Last Name'
       = c.text_field :email, placeholder: 'Email'

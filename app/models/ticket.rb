@@ -4,23 +4,17 @@ class Ticket < ActiveRecord::Base
 
   friendly_id :generate_slug, use: :slugged
 
-  belongs_to :customer, -> { where user_type: 'customer' }, class_name: 'User'
-  belongs_to :stuff, -> { where user_type: 'stuff' }, class_name: 'User'
+  belongs_to :stuff, class_name: 'User', foreign_key: :stuff_id
+  belongs_to :customer, -> { where guest: true }, class_name: 'User', foreign_key: :customer_id
+  has_many :comments
 
-  accepts_nested_attributes_for :customer,
-                                reject_if: -> (c){ user = User.find_by_email(c[:email]) rescue nil; !user.blank? && !user.stuff_type?}
+  accepts_nested_attributes_for :customer, :comments
 
   validates_presence_of :subject, :description
-
-  has_paper_trail only: [:description, :status, :stuff_id]
 
   scope :opened_tickets, ->{where(workflow_state: ['opened', nil, ''])}
   [:on_holded, :closed, :waiting_for_responsed].each do |s|
     scope "#{s}_tickets", ->{where(workflow_state: s)}
-  end
-
-  before_create do
-    PaperTrail.whodunnit = customer.id
   end
 
   after_create do
