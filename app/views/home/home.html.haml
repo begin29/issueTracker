@@ -1,0 +1,9 @@
+%h1.title
+  .jumbotron
+    = t('home.titles.welcome_message', user_name: @user.full_name)
+    .row-fluid
+      .span6
+        - if can? :create_request, Ticket
+          = link_to t('home.buttons.create_request'), new_ticket_path, class: 'btn-primary btn-lg'
+        - else
+          = link_to t('home.buttons.go_to_tickets'), new_ticket_path, class: 'btn-primary btn-lg'
