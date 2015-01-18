@@ -11,7 +11,7 @@
         =msg
 .border-form-div
   = form_for @ticket do |f|
-    = f.fields_for :customer do |c|
+    = f.fields_for :customer, @customer do |c|
       = c.text_field :first_name, autofocus: true, placeholder: 'First Name'
       = c.text_field :last_name, placeholder: 'Last Name'
       = c.text_field :email, placeholder: 'Email'

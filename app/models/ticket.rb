@@ -6,10 +6,10 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :stuff, class_name: 'User', foreign_key: :stuff_id
   has_one :ticket_log
-  has_one :customer, class_name: 'User', foreign_key: :customer_id, through: :ticket_log
+  has_one :customer, through: :ticket_log
   has_many :comments
 
-  accepts_nested_attributes_for :customer, :comments
+  accepts_nested_attributes_for :comments, :customer
 
   validates_presence_of :subject, :description
 
