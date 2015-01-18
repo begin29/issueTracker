@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :tickets
+  has_many :own_tickets, class_name: 'Ticket', foreign_key: :stuff_id
+
+  has_many :ticket_logs
+  has_many :created_tickets, through: :ticket_logs
 
   after_create do
     Sunspot.index! self
