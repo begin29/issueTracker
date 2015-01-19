@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
-    @ticket.build_customer
+    @customer = @ticket.build_ticket_log.build_customer
   end
 
   def index; end

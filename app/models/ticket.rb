@@ -8,7 +8,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :customer, class_name: 'User', foreign_key: :customer_id
   has_many :comments
 
-  accepts_nested_attributes_for :customer, :comments
+  accepts_nested_attributes_for :comments, :customer
 
   validates_presence_of :subject, :description
 
