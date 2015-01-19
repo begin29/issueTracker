@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  self.inheritance_column = :user_type
 
   has_many :own_tickets, class_name: 'Ticket', foreign_key: :stuff_id
 

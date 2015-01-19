@@ -5,8 +5,6 @@ class Ticket < ActiveRecord::Base
   friendly_id :generate_slug, use: :slugged
 
   belongs_to :stuff, class_name: 'User', foreign_key: :stuff_id
-  has_one :ticket_log
-  has_one :customer, through: :ticket_log
   has_many :comments
 
   accepts_nested_attributes_for :comments, :customer
