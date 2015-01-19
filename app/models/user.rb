@@ -14,7 +14,16 @@ class User < ActiveRecord::Base
     text :email, :first_name, :last_name
   end
 
+  def self.new_guest
+    new { |u| u.guest = true }
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  private
+    def password_required?
+      !self.guest?
+    end
 end
