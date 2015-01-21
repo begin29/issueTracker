@@ -12,9 +12,10 @@
 .border-form-div
   = form_for @ticket do |f|
     = f.fields_for :customer, @customer do |c|
-      = c.text_field :first_name, autofocus: true, placeholder: 'First Name'
+      = c.text_field :first_name, placeholder: 'First Name'
       = c.text_field :last_name, placeholder: 'Last Name'
       = c.text_field :email, placeholder: 'Email'
+      = c.hidden_field :guest
     = f.text_field :subject, placeholder: 'Ticket Subject'
     = f.text_area :description, cols:23, placeholder: 'Ticket Description'
     = f.button "Create", id: "create", class: 'btn'

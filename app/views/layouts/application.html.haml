@@ -9,7 +9,7 @@
     .container-narrow
       .masthead
         = render 'layouts/user_header'
-        %h3.muted= link_to t('home.titles.site_name'), root_path
+        %h3.muted= link_to t('pages.home.titles.site_name'), root_path
       - if notice
         %p.alert.alert-success= notice
       - if alert

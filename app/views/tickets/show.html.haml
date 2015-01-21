@@ -1,6 +1,6 @@
 #page-body
   %h1.title
-    = "#{t('ticket.titles.show_ticket')} #{@ticket.slug}"
+    = "#{t('pages.ticket.show.show_ticket')} #{@ticket.slug}"
   .row
     .col-md-4
     .col-md-4
@@ -11,11 +11,15 @@
             - @ticket.comments.each do |comment|
               %tr
                 %td
+                  %blockquote
+                    %p=comment.message
+                      %smal=comment.user.try(:full_name)
       %div.ticket_update_section
         - if can? :update, @ticket
           = form_for @ticket do |f|
             = f.fields_for :comments, Comment.new do |c|
               = c.label :message
               = c.text_area :message, class: 'form-control margin-bottom-10', rows: '3'
-            = f.submit t("Update"), class: 'btn'
+              = c.hidden_field :user_id, value: @user_id
+            = f.submit t("pages.ticket.show.buttons.update"), class: 'btn'
     .col-md-4
