@@ -32,7 +32,8 @@ en:
       new:
         new_ticket: 'New Ticket'
       show:
-        update: 'Update'
+        buttons:
+          update: 'Update'
         show_ticket: 'Ticket'
       update:
         errors:
