@@ -33,7 +33,6 @@ gem 'sunspot_rails', github: 'sunspot/sunspot'
 gem 'sunspot_solr'
 
 group :development do
-  gem 'mailcatcher'
   gem "binding_of_caller"
   gem 'better_errors'
 end
