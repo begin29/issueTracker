@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
     # resources :products
+
+  get "/comment_section",         to: 'application#comment_section'
+
   resources :tickets do
     member do
       put 'update_status'

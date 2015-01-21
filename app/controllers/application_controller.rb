@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Access Denied!"
   end
 
+  def comment_section
+    @comment = Comment.new(parent_id: params[:comment_id])
+    @ticket = Ticket.find(params[:ticket_id]) rescue nil
+    render partial: 'shared/comment_update_section', locals: {ticket: @ticket, user_id: params[:user_id], comment: @comment}
+  end
+
   protected
 
     def configure_permitted_parameters

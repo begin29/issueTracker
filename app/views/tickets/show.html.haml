@@ -11,15 +11,8 @@
             - @ticket.comments.each do |comment|
               %tr
                 %td
-                  %blockquote
-                    %p=comment.message
-                      %smal=comment.user.try(:full_name)
+                  = render 'shared/comment_answer_section', {ticket: @ticket, comment: comment}
       %div.ticket_update_section
         - if can? :update, @ticket
-          = form_for @ticket do |f|
-            = f.fields_for :comments, Comment.new do |c|
-              = c.label :message
-              = c.text_area :message, class: 'form-control margin-bottom-10', rows: '3'
-              = c.hidden_field :user_id, value: @user_id
-            = f.submit t("pages.ticket.show.buttons.update"), class: 'btn'
+          = render 'shared/comment_update_section', {ticket: @ticket, user_id: @user_id}
     .col-md-4

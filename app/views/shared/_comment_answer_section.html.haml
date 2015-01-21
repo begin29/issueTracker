@@ -1,0 +1,3 @@
+%blockquote.comment-content{ :data => {'comment-id'=> comment.id, 'ticket-id'=> @ticket.id} }
+  %p=comment.message
+  %smal=comment.user.try(:full_name)
