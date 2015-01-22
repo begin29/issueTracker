@@ -6,9 +6,9 @@
     .col-md-4
       = @ticket.description
       %div.ticket_comments_section
-        %table.table
+        %table.table{ :data => {'user-id'=> @user_id} }
           %tbody
-            - @ticket.comments.each do |comment|
+            - @ticket.comments.parent_comments.each do |comment|
               %tr
                 %td
                   = render 'shared/comment_answer_section', {ticket: @ticket, comment: comment}

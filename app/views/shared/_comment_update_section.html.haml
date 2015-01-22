@@ -1,6 +1,8 @@
+- comment ||= Comment.new
 = form_for ticket do |f|
   = f.fields_for :comments, comment do |c|
     = c.label :message
     = c.text_area :message, class: 'form-control margin-bottom-10', rows: '3'
     = c.hidden_field :user_id, value: user_id
+    = c.hidden_field :parent_id, value: comment.parent.try(:id)
   = f.submit t("pages.ticket.show.buttons.update"), class: 'btn comment-update'

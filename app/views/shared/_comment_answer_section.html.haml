@@ -1,3 +1,9 @@
-%blockquote.comment-content{ :data => {'comment-id'=> comment.id, 'ticket-id'=> @ticket.id} }
-  %p=comment.message
-  %smal=comment.user.try(:full_name)
+%blockquote{ :data => {'comment-id'=> comment.id, 'ticket-id'=> @ticket.id} }
+  %p
+    =comment.message
+    - if comment.user
+      %small="#{t('pages.ticket.show.labels.commented_by')} #{comment.user.try(:full_name)}"
+  %i.fa.fa-reply.comment-content-answer{title: "Reply"}
+  - if comment.childrens.any?
+    - comment.childrens.each do |child|
+      = render 'shared/comment_answer_section', {ticket: @ticket, comment: child}
