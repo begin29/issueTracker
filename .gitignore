@@ -26,6 +26,8 @@ solr/*
 /vendor/bundle
 /coverage/
 /spec/tmp/*
+/.idea/*
+/.idea
 **.orig
 *.xml
 *.*~
