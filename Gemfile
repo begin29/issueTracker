@@ -42,10 +42,11 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
-  gem "rspec"
-  gem "rspec-rails"
   gem 'ffaker'
 end
+
+
+gem "rspec-rails", group: [:test, :development]
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
