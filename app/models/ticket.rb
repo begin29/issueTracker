@@ -8,24 +8,25 @@ class Ticket < ActiveRecord::Base
   belongs_to :customer, class_name: 'User', foreign_key: :customer_id
   has_many :comments
 
-  def initialize(attributes = {})
-    @user = User.find_by_email(attributes[:customer_attributes][:email]) rescue nil
-    super
-  end
-
   accepts_nested_attributes_for :comments, :customer
 
+  # If customer already exist, system will reject his.
   accepts_nested_attributes_for :customer,
                                 reject_if: !@user.blank?
-                                # If customer already exist, system will reject his.
 
   validates_presence_of :subject, :description
 
   before_validation :set_exist_user, unless: -> { @user.blank? }
 
   scope :opened_tickets, ->{where(workflow_state: ['opened', nil, ''])}
+
   [:on_holded, :closed, :waiting_for_responsed].each do |s|
     scope "#{s}_tickets", ->{where(workflow_state: s)}
+  end
+
+  def initialize(attributes = {})
+    @user = User.find_by_email(attributes[:customer_attributes][:email]) rescue nil
+    super
   end
 
   after_create do

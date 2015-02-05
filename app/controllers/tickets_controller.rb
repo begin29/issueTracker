@@ -23,16 +23,17 @@ class TicketsController < ApplicationController
   def update
     if @ticket.update_attributes ticket_params
       @ticket.waiting_for_response! if !current_user && @ticket.workflow_state != 'waiting_for_responsed'
-      request.xhr? ? (render partial: 'shared/comment_answer_section', locals:{ticket: @ticket, comment: @ticket.comments.last }) : redirect_to(ticket_path(@ticket), flash: { notice: "Ticket was updated." })
+      request.xhr? ? (render partial: 'shared/comment_answer_section', locals:{ticket: @ticket, comment: @ticket.comments.last }) :
+          redirect_to(ticket_path(@ticket), flash: { notice: "Ticket was updated." })
     else
       render :show
     end
   end
 
   def show
-    @comments = @ticket.comments
+    @comments = @ticket.comments.parent_comments.paginate(page: params[:page])
     @user_id = current_user ? current_user.id : @ticket.customer.id
-    p @user_id
+    render partial: 'tickets/ticket_body', locals: {ticket: @ticket, comments: @comments} if request.xhr?
   end
 
   def on_holded; end

@@ -1,0 +1,4 @@
+- comments.each do |comment|
+  %tr
+    %td
+      = render 'shared/comment_answer_section', {ticket: @ticket, comment: comment}

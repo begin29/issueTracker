@@ -46,8 +46,6 @@ body{margin-left: 10px;margin-right: 10px; margin-bottom: 10px; overflow-y: hidd
 
 .margin-bottom-10{margin-bottom: 10px;}
 
-#page-body{ height: 70vh; overflow-x: hidden;}
-
 #error_explanation{text-align: center;}
 
 .paginate {z-index:10;bottom:13px;right:35px; float: right;}
@@ -87,5 +85,3 @@ body{margin-left: 10px;margin-right: 10px; margin-bottom: 10px; overflow-y: hidd
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
-
-.margin-bottom-40{margin-bottom: 40px;}

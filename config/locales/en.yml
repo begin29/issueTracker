@@ -35,6 +35,7 @@ en:
         buttons:
           update: 'Update'
         labels:
+          description: 'Description:'
           commented_by: 'Commented by:'
         show_ticket: 'Ticket'
       update:

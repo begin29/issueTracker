@@ -1,0 +1,13 @@
+.content
+  .row
+    .col-md-4
+    .col-md-4
+      %div.ticket_comments_section
+        %table.table{ :data => {'user-id'=> @user_id} }
+          %tbody
+            - @comments.each do |comment|
+              %tr
+                %td
+                  = render 'shared/comment_answer_section', {ticket: @ticket, comment: comment}
+  %div.paginate
+    = will_paginate @comments

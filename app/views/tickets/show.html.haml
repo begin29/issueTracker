@@ -1,18 +1,7 @@
 #page-body
-  %h1.title
+  %h2.title
     = "#{t('pages.ticket.show.show_ticket')} #{@ticket.slug}"
-  .row
-    .col-md-4
-    .col-md-4
-      = @ticket.description
-      %div.ticket_comments_section
-        %table.table{ :data => {'user-id'=> @user_id} }
-          %tbody
-            - @ticket.comments.parent_comments.each do |comment|
-              %tr
-                %td
-                  = render 'shared/comment_answer_section', {ticket: @ticket, comment: comment}
-      %div.ticket_update_section
-        - if can? :update, @ticket
-          = render 'shared/comment_update_section', {ticket: @ticket, user_id: @user_id}
-    .col-md-4
+  .description
+    = "#{t('pages.ticket.show.labels.description')} #{@ticket.description}"
+  .ticket-body
+    = render 'tickets/ticket_body', {ticket: @ticket, comments: @comments}
