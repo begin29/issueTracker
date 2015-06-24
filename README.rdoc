@@ -13,4 +13,3 @@ rake sunspot:solr:start
 
 rake sunspot:solr:reindex
 
-some test text
